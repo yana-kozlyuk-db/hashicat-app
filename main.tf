@@ -117,4 +117,12 @@ resource "null_resource" "configure-cat-app" {
       host        = google_compute_instance.hashicat.network_interface.0.access_config.0.nat_ip
     }
   }
+
+  module "cloud-storage" {
+    source     = "app.terraform.io/yk_db_ag/cloud-storage/google"
+    version    = "3.4.1"
+    names      = ["hashicat-private"]
+    prefix     = var.prefix
+    project_id = var.project
+  }
 }
